@@ -23,6 +23,20 @@ function HomePage() {
 
 export default HomePage
 
+const StyledBanner = styled.div`
+  img {
+    height: 230px;
+    width: 100%;
+  }
+`
+function Banner(props) {
+  return (
+    <StyledBanner>
+      <img src={props.image} />
+    </StyledBanner>
+  )
+}
+
 const StyledHeader = styled.div`
   img {
     width: 80px;
@@ -31,7 +45,6 @@ const StyledHeader = styled.div`
   }
   
   .user-info {
-    margin-top: 50px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -42,20 +55,23 @@ const StyledHeader = styled.div`
 
 function Header() {
   return (
-    <StyledHeader>
-      <section className="user-info">
-        {/* <img src="banner"/> */}
-        <img src={`https://github.com/${config.github}.png`} />
-        <div>
-          <h2>
-            {config.name}
-          </h2>
-          <p>
-            {config.description}
-          </p>
-        </div>
-      </section>
-    </StyledHeader>
+    <>
+      <Banner image={config.backgroundImage} />
+      <StyledHeader>
+        <section className="user-info">
+          {/* <img src="banner"/> */}
+          <img src={`https://github.com/${config.github}.png`} />
+          <div>
+            <h2>
+              {config.name}
+            </h2>
+            <p>
+              {config.description}
+            </p>
+          </div>
+        </section>
+      </StyledHeader>
+    </>
   )
 }
 
