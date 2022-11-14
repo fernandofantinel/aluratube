@@ -16,6 +16,7 @@ function HomePage() {
         <Menu />
         <Header />
         <Timeline playlists={config.playlists} />
+        <Favorites favorites={config.favorites} />
       </div>
     </>
   )
@@ -75,13 +76,6 @@ function Header() {
   )
 }
 
-// const StyledTimeline = styled.div`
-//   div {
-//     display: flex;
-//     gap: 16px;
-//   }
-// `
-
 function Timeline(props) {
   const playlistsNames = Object.keys(props.playlists)
   return (
@@ -109,5 +103,55 @@ function Timeline(props) {
         })
       }
     </StyledTimeline>
+  )
+}
+
+const StyledFavorites = styled.div`
+  padding: 0 16px 8px 16px;
+  margin-left: 16px;
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .favorites-list {
+    display: flex;
+    gap: 16px;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 140px;
+
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+  }  
+`
+
+function Favorites(props) {
+  const favorites = props.favorites
+  return (
+    <StyledFavorites>
+      <h2>Aluratubes Favoritos</h2>
+      <div className="favorites-list">
+        {favorites.map(favorite => {
+          return (
+            <a href={`https://github.com/${favorite}`}>
+              <img src={`https://github.com/${favorite}.png`} />
+              <span>
+                @{favorite}
+              </span>
+            </a>
+          )
+        })}
+      </div>
+    </StyledFavorites>
   )
 }
